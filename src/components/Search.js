@@ -9,13 +9,12 @@ import "./style.css";
 function Search() {
   const { setSearch, search, setColor, setType, color, type } = useData();
   const [value, setValue] = useState(search);
-  
 
   useEffect(() => {
-    if(color || type){
+    if(color || type || search === ""){
       setValue("")
     }
-  }, [color, type]);
+  }, [color, type, search]);
 
   const handleOnSearch = () => {
     if(value.length > 0){
@@ -35,7 +34,9 @@ function Search() {
     if (e.key === 'Enter') {
       e.preventDefault();
       if(e.target.value.length > 0){
-      setSearch(e.target.value);
+        setSearch(e.target.value);
+        setColor("");
+        setType("");
       }
     }
 

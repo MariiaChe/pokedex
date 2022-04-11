@@ -1,14 +1,11 @@
 import { useState, useEffect }from 'react';
 import { useData } from  "../context/dataProvider";
-import { Container, Backdrop, CircularProgress, Grid } from '@mui/material';
+import { Container, Backdrop, CircularProgress } from '@mui/material';
 import Pagination from '../components/Pagination';
 import PokemonsGrid from "../components/Grid";
 import Toolbar from "../components/Toolbar";
-import { capitalize } from "../helpers/capitalize";
+import FiltersInfo from "../components/FiltersInfo";
 
-const spanStyle = {
-  color: "var(--red)",
-}
 
 
 function Home() {
@@ -36,14 +33,8 @@ function Home() {
     </Backdrop>}
     <Container>
       <Toolbar />
-      <Grid container sx={{marginBottom:"20px"}}>
-      {type && !color  &&<Grid item xs={12}> <h3>Filtered by type: <span style={spanStyle}>{capitalize(type)}</span></h3></Grid>}
-      {color && !type &&<Grid item xs={12}> <h3>Filtered by color: <span style={spanStyle}>{capitalize(color)}</span> </h3></Grid>}
-      {color && type &&  <Grid item xs={12}><h3>Filtered by type: <span style={spanStyle}>{capitalize(type)}</span> and color: <span style={spanStyle}>{capitalize(color)}</span> </h3></Grid>}
-      {search && <Grid item xs={12}><h3>Searched by: <span style={spanStyle}>{search}</span>
-       </h3></Grid>}
-      {status === "error" && <Grid item xs={12}><h3>Error</h3></Grid>}
-      </Grid>
+      <FiltersInfo color={color} type={type} search={search} />
+    
       {((search?.length === 0 && !type && !color && status === "success"  && data?.results?.length > 0) || (status === "success" &&  (search?.length > 0 || type || color ) && data.length > 0)) && (
         <>
           <PokemonsGrid pokemons={type || color || search.length > 0   ? data : data.results} />

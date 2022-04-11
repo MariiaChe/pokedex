@@ -10,14 +10,14 @@ function Toolbar() {
     <Grid container spacing={2}>
       <Grid sx={{display: "flex", justifyContent:"flex-start", marginBottom:"20px", alignItems:"center"}} item xs={12} sm={12} md={4}>
         <Search />
-        </Grid>
-        <Grid sx={{display: "flex", justifyContent:"flex-start", marginBottom:"20px", alignItems:"center"}} item xs={12} sm={12} md={4}>
+      </Grid>
+      <Grid sx={{display: "flex", justifyContent:"flex-start", marginBottom:"20px", alignItems:"center"}} item xs={12} sm={12} md={4}>
         <SelectColor />
-        </Grid>
-        <Grid sx={{display: "flex", justifyContent:"flex-start", marginBottom:"20px", alignItems:"center"}} item xs={12} sm={12} md={4}>
+      </Grid>
+      <Grid sx={{display: "flex", justifyContent:"flex-start", marginBottom:"20px", alignItems:"center"}} item xs={12} sm={12} md={4}>
         <SelectType />
       </Grid>
-      </Grid>
+    </Grid>
   );
 };
 
