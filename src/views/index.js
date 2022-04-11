@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 
 const CoctailsApp = () =>(
   <Routes>
-    <Route path='/' element={<Home/>} />
+    <Route path='/pokedex' element={<Home/>} />
     <Route path='/:name' element={<PokemonDetail/>} />
   </Routes>
   
