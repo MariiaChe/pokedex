@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { usePokemon } from '../queries/pokemon.queries';
-import { Container, CircularProgress,Grid,Box, List, ListItem, ListItemText, Chip, Stack, Button} from '@mui/material';
+import { Container, CircularProgress,Grid,Box, List, ListItem, ListItemText, Button} from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useNavigate } from "react-router-dom";
 import { capitalize} from "../helpers/capitalize";

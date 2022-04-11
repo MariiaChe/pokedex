@@ -30,6 +30,16 @@ function Search() {
   const handleOnChange = (e) => {
     setValue(e.target.value);
   };
+
+  const handleOnKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if(e.target.value.length > 0){
+      setSearch(e.target.value);
+      }
+    }
+
+  }
   return (
     <Paper
       className="search-container"
@@ -41,6 +51,7 @@ function Search() {
         inputProps={{ 'aria-label': 'search by full name or id' }}
         onChange={handleOnChange}
         value={value}
+        onKeyDown={handleOnKeyDown}
       />
       <IconButton onClick={handleOnSearch} sx={{ p: '10px' }} aria-label="search">
         <SearchIcon />
