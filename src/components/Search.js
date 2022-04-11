@@ -1,5 +1,5 @@
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Paper, InputBase, IconButton }from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useData } from "../context/dataProvider";

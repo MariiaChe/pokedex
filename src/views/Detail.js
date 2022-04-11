@@ -13,7 +13,6 @@ const boxStyles = {
   display:"flex",
   alignItems:"center",
 }
-
 const imgWrapper = {
   minWidth: "250px",
   maxWidth: "300px",

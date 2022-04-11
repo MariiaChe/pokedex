@@ -1,6 +1,3 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
 const headerStyle = {
   wrapper:{
   display: 'flex',
@@ -10,18 +7,16 @@ const headerStyle = {
   h3:{
     fontSize: '1.7rem',
     fontWeight: '500',
-    color:"#ff5000"
+    color:"var(--red)",
   }
-}
+};
 
-function Header(props) {
+function Header() {
   return (
     <div style={headerStyle.wrapper}>
     <h3 style={headerStyle.h3}>Pokedex</h3>
     </div>
   )
-}
+};
 
-Header.propTypes = {}
-
-export default Header
+export default Header;
