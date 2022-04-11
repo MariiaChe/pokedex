@@ -96,6 +96,8 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
+// there is a bug in responsive mode, on select an option throw an error: Uncaught Error: Maximum update depth exceeded. This can happen when a component repeatedly calls setState inside componentWillUpdate or componentDidUpdate. React limits the number of nested updates to prevent infinite loops. AND I have no idea how to resolve it  :(
+
 export function CustomSelect(props) {
   const components = {
     Root: StyledButton,
