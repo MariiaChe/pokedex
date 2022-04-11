@@ -1,7 +1,17 @@
 import { useColorsList } from "../queries/pokemon.queries";
 import { useData } from "../context/dataProvider";
-import { CustomSelect, StyledOption } from "./CustomSelect";
 import { capitalize } from "../helpers/capitalize";
+import Select from "react-select";
+import { selectCustomStyles } from "./CustomStyles";
+
+
+const findDefaultValue = (options, color) => {
+  if (color && color.length > 0) {
+    return options.find((item) => item.value === color);
+  }else{
+    return null;
+  }
+}
 
 
 function SelectColor() {
@@ -9,18 +19,34 @@ function SelectColor() {
   const { setColor, setSearch, color } = useData();
 
   const handleOnChange = (res) =>{
-    if(res !== ""){
+    if(res?.value !== ""){
       setSearch("");
     }
-    setColor(res);
+    if(!res){
+      setColor("");
+    }else{
+      setColor(res.value);
+    }
+   
   }
+
+  const options = data?.results.map((item) => {
+    return {
+      value: item.name,
+      label: capitalize(item.name),
+    };
+  })
+
+  
     return (
-    <CustomSelect onChange={ handleOnChange} value={color || ""}>
-      {(status === "loading" ||status ===  "error" || status === "success") && <StyledOption value={""}>All colors</StyledOption>}
-      {status ==="success" && data.results.map(({ name }) => (
-      <StyledOption key={name} value={name}>{capitalize(name)}</StyledOption>
-      ))}
-    </CustomSelect>
+      <Select
+        styles={selectCustomStyles}
+        options={options}
+        onChange={handleOnChange}
+        placeholder="Select a color"
+        isClearable
+        value={findDefaultValue(options, color)}
+      />
   )};
 
 export default SelectColor;
