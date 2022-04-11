@@ -3,10 +3,10 @@ import { usePokemon } from '../queries/pokemon.queries';
 import { Container, CircularProgress,Grid,Box, List, ListItem, ListItemText, Chip, Stack, Button} from '@mui/material';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useNavigate } from "react-router-dom";
+import { capitalize} from "../helpers/capitalize";
 
 
 const boxStyles = {
-
   minWidth: "280px",
   maxWidth: "60vw",
   margin: "auto",
@@ -28,25 +28,40 @@ const progressWrapper = {
   justifyContent:"center"
 }
 
+const span = {
+  borderColor:"#ff5000", 
+  display:"inline-flex" , 
+  justifyContent:"center", 
+  alignItems:"center", 
+  color:"#ff5000", 
+  width:"120px", 
+  margin:"8px", 
+  height:"30px", 
+  border:"1px solid var(--red)", 
+  borderRadius:"var(--border-radius)"
+}
+
 const getTypes = (types = []) => {
   const array = types.map((item) => (item.type.name))
   return (
-    <Stack direction="row" spacing={1}>
+    <span>
       {array.map((type) => (
-        <Chip sx={{borderColor:"#ff5000", color:"#ff5000"}} key={type} label={type} variant="outlined" />
+        <span key={type} style={span}>
+          {type}
+      </span>
       ))}
-    </Stack>
+    </span>
   )
 
 }
 const getAbilities = (abilities = []) => {
   const array = abilities.map((item) =>(item.ability.name));
   return (
-    <Stack direction="row" spacing={1}>
+    <span>
       {array.map((ability) => (
-        <Chip sx={{borderColor:"#ff5000",  color:"#ff5000"}} key={ability} label={ability} variant="outlined" />
+        <span key={ability} style={span}>{ability}</span>
       ))}
-    </Stack>
+    </span>
   );
 };
 
@@ -70,9 +85,11 @@ function Detail() {
       >
         Go back
       </Button>
-      </Box>    
+      </Box>   
+
       <Box 
         sx={boxStyles}>
+          {status ==="error" && <div>error</div>}
           {status === "loading" && <div style={progressWrapper} ><CircularProgress sx={{color:"#ffdbd0"}} /></div>}
           { status ==="success" && 
           <Grid container sx={{marginTop:"2rem", borderRadius: "var(--border-radius)",  backgroundColor: "#F7F8FC",padding:"20px", boxShadow: "0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%)"}}>
@@ -95,7 +112,7 @@ function Detail() {
             >
              <List>
                <ListItem>
-                 <ListItemText primary="Name:" secondary={data?.name} />
+                 <ListItemText primary="Name:" secondary={capitalize(data?.name)} />
                </ListItem>
                <ListItem>
                  <ListItemText primary="Height:" secondary={`${data?.height}cm`} />
@@ -111,7 +128,7 @@ function Detail() {
                </ListItem>
              </List>
             </Grid>  
-      </Grid> }
+          </Grid> }
       </Box> 
     </Container>
   );
